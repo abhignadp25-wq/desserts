@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sweet Heaven - Desserts</title>
+
+    <!-- INTERNAL CSS -->
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #fff7f9;
+            color: #4a3038;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        header {
+            background-color: #d63384;
+            padding: 18px 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffd6e8;
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .hero {
+            min-height: 90vh;
+            padding: 70px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #ffe5ef,
+                #fff0f5,
+                #ffe0ec
+            );
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content .small-title {
+            color: #d63384;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            line-height: 1.1;
+            color: #8e2857;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: #d63384;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #72515d;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: #d63384;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            background-color: #a61e60;
+            transform: translateY(-3px);
+        }
+
+        .hero-dessert {
+            font-size: 190px;
+            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.15));
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 40px;
+            color: #8e2857;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: #8b6c76;
+            margin-bottom: 45px;
+        }
+
+
+        /* =========================
+           DESSERT CARDS
+        ========================= */
+
+        .dessert-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .dessert-card {
+            background-color: white;
+            border-radius: 18px;
+            overflow: hidden;
+
+            box-shadow: 0 8px 25px rgba(150, 50, 100, 0.12);
+
+            transition: 0.3s;
+        }
+
+        .dessert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(150, 50, 100, 0.20);
+        }
+
+        .dessert-image {
+            height: 210px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #ffe3ed,
+                #fff1f6
+            );
+
+            font-size: 110px;
+        }
+
+        .dessert-info {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .dessert-info h3 {
+            color: #8e2857;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .dessert-info p {
+            color: #806872;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .dessert-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            color: #d63384;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .order-btn {
+            background-color: #d63384;
+            color: white;
+            text-decoration: none;
+
+            padding: 9px 17px;
+            border-radius: 20px;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .order-btn:hover {
+            background-color: #a61e60;
+        }
+
+
+        /* =========================
+           SPECIAL OFFER
+        ========================= */
+
+        .offer {
+            background: linear-gradient(
+                135deg,
+                #d63384,
+                #a61e60
+            );
+
+            color: white;
+        }
+
+        .offer h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .offer p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .offer-btn {
+            display: inline-block;
+            padding: 13px 28px;
+
+            background-color: white;
+            color: #d63384;
+
+            text-decoration: none;
+            border-radius: 25px;
+
+            font-weight: bold;
+        }
+
+        .offer-btn:hover {
+            background-color: #ffe5ef;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .about-container p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #72515d;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-box {
+            max-width: 650px;
+            margin: auto;
+
+            background-color: white;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            box-shadow: 0 8px 25px rgba(150, 50, 100, 0.10);
+        }
+
+        .contact-item {
+            margin: 18px 0;
+            font-size: 17px;
+        }
+
+        .contact-item span {
+            font-weight: bold;
+            color: #d63384;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background-color: #351421;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer h3 {
+            color: #ff9fc4;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #d8bbc5;
+            margin: 6px;
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .dessert-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-content h1 {
+                font-size: 48px;
+            }
+
+            .hero-dessert {
+                font-size: 140px;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-dessert {
+                font-size: 110px;
+            }
+
+            .dessert-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+                🍰 Sweet Heaven
+            </div>
+
+            <ul>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#desserts">Desserts</a>
+                </li>
+
+                <li>
+                    <a href="#offers">Offers</a>
+                </li>
+
+                <li>
+                    <a href="#about">About</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                WELCOME TO SWEET HEAVEN
+            </div>
+
+            <h1>
+                Life is short,
+                <span>eat dessert!</span>
+            </h1>
+
+            <p>
+                Discover delicious cakes, creamy ice creams,
+                tasty donuts and wonderful desserts made with
+                love and the finest ingredients.
+            </p>
+
+            <a href="#desserts" class="hero-btn">
+                Explore Desserts
+            </a>
+
+        </div>
+
+
+        <div class="hero-dessert">
+            🍰
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DESSERT MENU
+    ========================= -->
+
+    <section class="section" id="desserts">
+
+        <h2 class="section-title">
+            Our Delicious Desserts
+        </h2>
+
+        <p class="section-subtitle">
+            Sweet treats made to make your day better ❤️
+        </p>
+
+
+        <div class="dessert-container">
+
+
+            <!-- Cake -->
+
+            <div class="dessert-card">
+
+                <div class="dessert-image">
+                    🍰
+                </div>
+
+                <div class="dessert-info">
+
+                    <h3>
+                        Chocolate Cake
+                    </h3>
+
+                    <p>
+                        Soft chocolate sponge covered with
+                        rich chocolate cream and chocolate chips.
+                    </p>
+
+                    <div class="dessert-bottom">
+
+                        <span class="price">
+                            ₹299
+                        </span>
+
+                        <a href="#" class="order-btn">
+                            Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Ice Cream -->
+
+            <div class="dessert-card">
+
+                <div class="dessert-image">
+                    🍨
+                </div>
+
+                <div class="dessert-info">
+
+                    <h3>
+                        Ice Cream Sundae
+                    </h3>
+
+                    <p>
+                        Creamy vanilla ice cream topped with
+                        chocolate sauce, nuts and cherries.
+                    </p>
+
+                    <div class="dessert-bottom">
+
+                        <span class="price">
+                            ₹179
+                        </span>
+
+                        <a href="#" class="order-btn">
+                            Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Donut -->
+
+            <div class="dessert-card">
+
+                <div class="dessert-image">
+                    🍩
+                </div>
+
+                <div class="dessert-info">
+
+                    <h3>
+                        Glazed Donut
+                    </h3>
+
+                    <p>
+                        Soft and fluffy donut covered with
+                        delicious strawberry and chocolate glaze.
+                    </p>
+
+                    <div class="dessert-bottom">
+
+                        <span class="price">
+                            ₹99
+                        </span>
+
+                        <a href="#" class="order-btn">
+                            Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Cupcake -->
+
+            <div class="dessert-card">
+
+                <div class="dessert-image">
+                    🧁
+                </div>
+
+                <div class="dessert-info">
+
+                    <h3>
+                        Vanilla Cupcake
+                    </h3>
+
+                    <p>
+                        A soft vanilla cupcake topped with
+                        creamy frosting and colorful sprinkles.
+                    </p>
+
+                    <div class="dessert-bottom">
+
+                        <span class="price">
+                            ₹89
+                        </span>
+
+                        <a href="#" class="order-btn">
+                            Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Cookie -->
+
+            <div class="dessert-card">
+
+                <div class="dessert-image">
+                    🍪
+                </div>
+
+                <div class="dessert-info">
+
+                    <h3>
+                        Chocolate Cookies
+                    </h3>
+
+                    <p>
+                        Crunchy cookies filled with delicious
+                        chocolate chips and a buttery flavor.
+                    </p>
+
+                    <div class="dessert-bottom">
+
+                        <span class="price">
+                            ₹129
+                        </span>
+
+                        <a href="#" class="order-btn">
+                            Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Macaron -->
+
+            <div class="dessert-card">
+
+                <div class="dessert-image">
+                    🍬
+                </div>
+
+                <div class="dessert-info">
+
+                    <h3>
+                        French Macarons
+                    </h3>
+
+                    <p>
+                        Colorful and delicate macarons with
+                        delicious creamy fillings.
+                    </p>
+
+                    <div class="dessert-bottom">
+
+                        <span class="price">
+                            ₹249
+                        </span>
+
+                        <a href="#" class="order-btn">
+                            Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SPECIAL OFFER
+    ========================= -->
+
+    <section class="section offer" id="offers">
+
+        <h2>
+            🎉 Special Dessert Offer!
+        </h2>
+
+        <p>
+            Get 20% OFF on your first order.
+        </p>
+
+        <a href="#contact" class="offer-btn">
+            Get Your Dessert
+        </a>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section class="section" id="about">
+
+        <h2 class="section-title">
+            About Sweet Heaven
+        </h2>
+
+        <p class="section-subtitle">
+            Where every dessert tells a sweet story
+        </p>
+
+        <div class="about-container">
+
+            <p>
+                Sweet Heaven is a dessert website created for
+                people who love sweet and delicious treats.
+                From creamy ice creams and chocolate cakes
+                to colorful macarons and freshly baked cookies,
+                we believe every dessert should bring a smile.
+            </p>
+
+            <br>
+
+            <p>
+                Our desserts are prepared using quality ingredients
+                and lots of creativity. Whether you're celebrating
+                a special occasion or simply treating yourself,
+                Sweet Heaven has something delicious for you.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section class="section" id="contact">
+
+        <h2 class="section-title">
+            Contact Us
+        </h2>
+
+        <p class="section-subtitle">
+            We'd love to hear from you!
+        </p>
+
+
+        <div class="contact-box">
+
+            <div class="contact-item">
+                📧
+                <span>Email:</span>
+                sweetheaven@example.com
+            </div>
+
+            <div class="contact-item">
+                📞
+                <span>Phone:</span>
+                +91 98765 43210
+            </div>
+
+            <div class="contact-item">
+                📍
+                <span>Location:</span>
+                Bengaluru, India
+            </div>
+
+            <div class="contact-item">
+                🕐
+                <span>Opening Hours:</span>
+                10:00 AM - 10:00 PM
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <h3>
+            🍰 Sweet Heaven
+        </h3>
+
+        <p>
+            Delicious desserts made with love ❤️
+        </p>
+
+        <p>
+            © 2026 Sweet Heaven. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+</html>
